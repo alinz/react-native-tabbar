@@ -1,0 +1,23 @@
+{
+  "name": "react-native-tabbar",
+  "version": "0.0.0",
+  "description": "Tab bar with more freedom",
+  "main": "jsx/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alinz/react-native-tabbar.git"
+  },
+  "keywords": [
+    "react-native",
+    "tabbar"
+  ],
+  "author": "Ali Najafizadeh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alinz/react-native-tabbar/issues"
+  },
+  "homepage": "https://github.com/alinz/react-native-tabbar#readme"
+}
