@@ -12,42 +12,56 @@ var {
   View,
 } = React;
 
+var Tabbar = require('react-native-tabbar');
+var Item = Tabbar.Item;
+
 var FreeTabbar = React.createClass({
+
+  getInitialState: function () {
+    return {
+      selected: 'test1'
+    };
+  },
+
+  onTabItemPress: function (name) {
+    console.log(`click on ${name} item`);
+    this.setState({
+      selected: name
+    });
+  },
+
   render: function() {
+    var state = this.state;
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Tabbar selected={state.selected} onTabItemPress={this.onTabItemPress}>
+        <Item name="test1">
+          <Item.Content>
+            <View style={{ flex: 1, backgroundColor: 'blue' }}></View>
+          </Item.Content>
+          <Item.Icon>
+              <Text>Test1 Icon</Text>
+          </Item.Icon>
+        </Item>
+        <Item name="test2">
+          <Item.Content>
+            <View style={{ flex: 1, backgroundColor: 'red' }}></View>
+          </Item.Content>
+          <Item.Icon>
+              <Text>Test2 Icon</Text>
+          </Item.Icon>
+        </Item>
+        <Item name="test3">
+          <Item.Content>
+            <View style={{backgroundColor: 'yellow' }}></View>
+          </Item.Content>
+          <Item.Icon>
+              <Text>Test3 Icon</Text>
+          </Item.Icon>
+        </Item>
+      </Tabbar>
     );
   }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
 AppRegistry.registerComponent('FreeTabbar', () => FreeTabbar);
