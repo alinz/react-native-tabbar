@@ -31,7 +31,7 @@ class Tabbar extends Component {
             contentView = node;
           }
         } else {
-          node = React.addons.cloneWithProps(node, {
+          node = React.cloneElement(node, {
             key: item.props.name,
             selected: selected,
             onPress: () => { props.onTabItemPress(item.props.name) }
