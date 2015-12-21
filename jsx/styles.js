@@ -10,11 +10,12 @@ var styles = StyleSheet.create({
   tabbarView: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  iconView: {
+  tabView: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center'
   },
   contentView: {
     flex: 1

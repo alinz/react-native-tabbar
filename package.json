@@ -1,6 +1,6 @@
 {
   "name": "react-native-tabbar",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Tab bar with more freedom",
   "main": "jsx/index.js",
   "scripts": {
