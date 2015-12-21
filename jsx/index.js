@@ -1,124 +1,77 @@
 'use strict';
 
-var React = require('react-native');
-var styles = require('./styles.js');
+const React = require('react-native');
+const styles = require('./styles.js');
 
-var {
+const {
   Component,
   View,
+  Text,
   TouchableWithoutFeedback
 } = React;
 
-var childernforEach = React.Children.forEach;
-
-function noop() {}
-
 class Tabbar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    var props = this.props;
-    var itemList = [];
-    var contentView = null;
-
-    childernforEach(props.children, (item) => {
-      var selected = item.props.name == props.selected;
-      childernforEach(item.props.children, (node, index) => {
-        if (index % 2 == 0) {
-          if (selected) {
-            contentView = node;
-          }
-        } else {
-          node = React.cloneElement(node, {
-            key: item.props.name,
-            selected: selected,
-            onPress: () => { props.onTabItemPress(item.props.name) }
-          });
-          itemList.push(node);
-        }
-      });
-    });
-
+    const contents = this._generateContents();
     return (
       <View style={styles.container}>
         <View style={styles.contentView}>
-          {contentView}
+          { contents.activeView }
         </View>
-        <View style={[styles.tabbarView, { height: props.tabHeight }]}>
-          {itemList}
+        <View style={[styles.tabbarView, this.props.style]}>
+          { contents.tabs }
         </View>
       </View>
     );
+  }
+
+  _generateContents() {
+    const {
+      children,
+      onTabItemPress,
+      renderTabComponent,
+      selected,
+      tabHeight
+    } = this.props;
+
+    return children.reduce((accum, originalChild) => {
+      const { children: originChildChildren, name } = originalChild.props;
+      const isActive = name === selected;
+      const tabView = renderTabComponent(name, isActive);
+
+      if (isActive) {
+        accum.activeView = originChildChildren;
+      }
+
+      accum.tabs.push(
+        <TouchableWithoutFeedback key={name} onPress={() => onTabItemPress(name)}>
+          {
+            React.cloneElement(tabView, {
+              style: [styles.tabView, tabView.props.style],
+              height: tabHeight
+            })
+          }
+        </TouchableWithoutFeedback>
+      );
+
+      return accum;
+    }, { activeView: null, tabs: [] });
   }
 }
 
 Tabbar.propTypes = {
-  selected: React.PropTypes.string,
-  onTabItemPress: React.PropTypes.func,
-  tabHeight: React.PropTypes.number
+  selected: React.PropTypes.string.isRequired,
+  onTabItemPress: React.PropTypes.func.isRequired,
+  tabHeight: React.PropTypes.number,
+  renderTabComponent: React.PropTypes.func
 };
 
 Tabbar.defaultProps = {
   selected: '',
-  onTabItemPress: noop,
-  tabHeight: 50
+  tabHeight: 50,
+  renderTabComponent: (label, isActive) => <View style={styles.tabView}><Text>{ label }</Text></View>
 };
 
-class Item extends Component {
-  constructor(props) {
-    super(props);
-  }
-}
-
-Item.propTypes = {
-  name: React.PropTypes.string.isRequired
-};
-
-class Icon extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    var props = this.props;
-
-    return (
-      <TouchableWithoutFeedback onPress={props.onPress}>
-        <View style={styles.iconView}>
-          {props.children}
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  }
-}
-
-Icon.propTypes = {
-  onPress: React.PropTypes.func
-};
-
-Icon.defaultProps = {
-  onPress: noop
-};
-
-class Content extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    var props = this.props;
-    return (
-      <View style={styles.contentView}>
-        {props.children}
-      </View>
-    );
-  }
-}
-
-Item.Icon = Icon;
-Item.Content = Content;
-Tabbar.Item = Item;
+Tabbar.Item = View;
 
 module.exports = Tabbar;

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "FreeTabbar.app"
-               BlueprintName = "FreeTabbar"
-               ReferencedContainer = "container:FreeTabbar.xcodeproj">
+               BuildableName = "TabbarExample.app"
+               BlueprintName = "TabbarExample"
+               ReferencedContainer = "container:TabbarExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "FreeTabbarTests.xctest"
-               BlueprintName = "FreeTabbarTests"
-               ReferencedContainer = "container:FreeTabbar.xcodeproj">
+               BuildableName = "TabbarExampleTests.xctest"
+               BlueprintName = "TabbarExampleTests"
+               ReferencedContainer = "container:TabbarExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "FreeTabbarTests.xctest"
-               BlueprintName = "FreeTabbarTests"
-               ReferencedContainer = "container:FreeTabbar.xcodeproj">
+               BuildableName = "TabbarExampleTests.xctest"
+               BlueprintName = "TabbarExampleTests"
+               ReferencedContainer = "container:TabbarExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "FreeTabbar.app"
-            BlueprintName = "FreeTabbar"
-            ReferencedContainer = "container:FreeTabbar.xcodeproj">
+            BuildableName = "TabbarExample.app"
+            BlueprintName = "TabbarExample"
+            ReferencedContainer = "container:TabbarExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "FreeTabbar.app"
-            BlueprintName = "FreeTabbar"
-            ReferencedContainer = "container:FreeTabbar.xcodeproj">
+            BuildableName = "TabbarExample.app"
+            BlueprintName = "TabbarExample"
+            ReferencedContainer = "container:TabbarExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "FreeTabbar.app"
-            BlueprintName = "FreeTabbar"
-            ReferencedContainer = "container:FreeTabbar.xcodeproj">
+            BuildableName = "TabbarExample.app"
+            BlueprintName = "TabbarExample"
+            ReferencedContainer = "container:TabbarExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
