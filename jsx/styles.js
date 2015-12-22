@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var { StyleSheet, Dimensions } = React;
-const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 var styles = StyleSheet.create({
   container: {
@@ -21,10 +21,10 @@ var styles = StyleSheet.create({
   contentView: {
     flex: 1
   },
+  // Move the view outside of the current viewport.
   contentViewHidden: {
     position: 'absolute',
-    top: WINDOW_WIDTH,
-    bottom: -WINDOW_WIDTH
+    top: WINDOW_HEIGHT
   }
 });
 

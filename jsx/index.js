@@ -42,7 +42,7 @@ class Tabbar extends Component {
       accum.views.push(
         React.cloneElement(originChildChildren, {
           key: `view:${name}`,
-          style: [originChildChildren.props.style, isActive ? null: styles.contentViewHidden ]
+          style: [originChildChildren.props.style, isActive ? null: styles.contentViewHidden]
       }));
 
       accum.tabs.push(
