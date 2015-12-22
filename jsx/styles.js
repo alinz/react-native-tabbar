@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var { StyleSheet } = React;
+var { StyleSheet, Dimensions } = React;
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 var styles = StyleSheet.create({
   container: {
@@ -19,6 +20,11 @@ var styles = StyleSheet.create({
   },
   contentView: {
     flex: 1
+  },
+  contentViewHidden: {
+    position: 'absolute',
+    top: WINDOW_WIDTH,
+    bottom: -WINDOW_WIDTH
   }
 });
 

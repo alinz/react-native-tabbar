@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react-native');
-const styles = require('./styles.js');
+const styles = require('./styles');
 
 const {
   Component,
@@ -16,7 +16,7 @@ class Tabbar extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentView}>
-          { contents.activeView }
+          { contents.views }
         </View>
         <View style={[styles.tabbarView, this.props.style]}>
           { contents.tabs }
@@ -39,12 +39,14 @@ class Tabbar extends Component {
       const isActive = name === selected;
       const tabView = renderTabComponent(name, isActive);
 
-      if (isActive) {
-        accum.activeView = originChildChildren;
-      }
+      accum.views.push(
+        React.cloneElement(originChildChildren, {
+          key: `view:${name}`,
+          style: [originChildChildren.props.style, isActive ? null: styles.contentViewHidden ]
+      }));
 
       accum.tabs.push(
-        <TouchableWithoutFeedback key={name} onPress={() => onTabItemPress(name)}>
+        <TouchableWithoutFeedback key={`tab:${name}`} onPress={() => onTabItemPress(name)}>
           {
             React.cloneElement(tabView, {
               style: [styles.tabView, tabView.props.style],
@@ -55,7 +57,7 @@ class Tabbar extends Component {
       );
 
       return accum;
-    }, { activeView: null, tabs: [] });
+    }, { views: [], tabs: [] });
   }
 }
 
