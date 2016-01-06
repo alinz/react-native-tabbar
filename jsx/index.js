@@ -40,10 +40,12 @@ class Tabbar extends Component {
       const tabView = renderTabComponent(name, isActive);
 
       accum.views.push(
-        React.cloneElement(originChildChildren, {
-          key: `view:${name}`,
-          style: [originChildChildren.props.style, isActive ? null: styles.contentViewHidden]
-      }));
+        <View
+          key={`view:${name}`}
+          style={[styles.contentView, isActive ? null: styles.contentViewHidden]}>
+          { originChildChildren }
+        </View>
+      );
 
       accum.tabs.push(
         <TouchableWithoutFeedback key={`tab:${name}`} onPress={() => onTabItemPress(name)}>

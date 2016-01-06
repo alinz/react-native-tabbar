@@ -6,9 +6,13 @@
 
 const React = require('react-native');
 const {
+  Component,
+  Dimensions,
   Text,
   View,
 } = React;
+
+const window = Dimensions.get('window');
 
 const Tabbar = require('react-native-tabbar');
 
@@ -30,30 +34,38 @@ const Example = React.createClass({
     const state = this.state;
 
     return (
-      <Tabbar selected={state.selected}
-              onTabItemPress={this.onTabItemPress}
-              style={{ borderTopWidth: 1, borderColor: 'hotpink' }}
-              renderTabComponent={(name, isActive) => (
-                <View
-                    style={[
-                      { borderTopWidth: 5, justifyContent: 'center', alignItems: 'center' },
-                      isActive ? { borderColor: 'hotpink'} : { borderColor: 'transparent' }
-                    ]}>
-                  <Text style={isActive ? { color: 'hotpink' } : null}>{ name }</Text>
-                </View>
-              )}>
-        <Tabbar.Item name="Test 1">
-          <View style={{ flex: 1, backgroundColor: 'blue' }}></View>
-        </Tabbar.Item>
-        <Tabbar.Item name="Test 2">
-          <View style={{ flex: 1, backgroundColor: 'red' }}></View>
-        </Tabbar.Item>
-        <Tabbar.Item name="Test 3">
-          <View style={{ flex: 1, backgroundColor: 'yellow' }}></View>
-        </Tabbar.Item>
-      </Tabbar>
+      <View style={{ flex: 1}}>
+        <Tabbar selected={state.selected}
+                onTabItemPress={this.onTabItemPress}
+                style={{ borderTopWidth: 1, borderColor: 'hotpink', backgroundColor: 'white' }}
+                renderTabComponent={(name, isActive) => (
+                  <View
+                      style={[
+                        { borderTopWidth: 5, justifyContent: 'center', alignItems: 'center' },
+                        isActive ? { borderColor: 'hotpink'} : { borderColor: 'transparent' }
+                      ]}>
+                    <Text style={isActive ? { color: 'hotpink' } : null}>{ name }</Text>
+                  </View>
+                )}>
+          <Tabbar.Item name="Test 1">
+            <TestView color="blue"/>
+          </Tabbar.Item>
+          <Tabbar.Item name="Test 2">
+            <TestView color="red"/>
+          </Tabbar.Item>
+          <Tabbar.Item name="Test 3">
+            <TestView color="yellow"/>
+          </Tabbar.Item>
+        </Tabbar>
+      </View>
     );
   }
 });
+
+class TestView extends Component {
+  render() {
+    return <View style={{ position: 'absolute', width: window.width, height: window.height, backgroundColor: this.props.color }}></View>;
+  }
+}
 
 module.exports = Example;
