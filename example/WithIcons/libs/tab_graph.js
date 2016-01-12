@@ -47,7 +47,6 @@ export const buildTabGraph = (children, tabs) => {
     tab.content = null;
 
     React.Children.forEach(tabChild.props.children, (tabItem) => {
-      console.log(tabItem);
       if (tabItem.type === Icon) {
         if (tab.icon) {
           throw new Error('one tab has too many Icon components');
