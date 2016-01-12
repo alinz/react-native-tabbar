@@ -9,8 +9,10 @@ const extendRawIcon = (ChildComponent) => {
 
     render() {
       const component = ChildComponent? <ChildComponent {...this.props}/> : this.props.children;
+      const { barSize } = this.context;
+
       return (
-        <View style={{ flex: 1, height: 50 }}>
+        <View style={{ flex: 1, height: barSize }}>
           <Wrapper ref="wrap">
             {component}
           </Wrapper>
@@ -18,6 +20,10 @@ const extendRawIcon = (ChildComponent) => {
       );
     }
   }
+
+  RawIcon.contextTypes = {
+    barSize: React.PropTypes.number
+  };
 
   return RawIcon;
 }

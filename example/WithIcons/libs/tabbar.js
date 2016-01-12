@@ -13,6 +13,12 @@ export default class Tabbar extends Component {
     };
   }
 
+  getChildContext() {
+    return {
+      barSize: this.props.barSize
+    };
+  }
+
   getBarRef() {
     return this.refs[REF_BAR];
   }
@@ -48,4 +54,8 @@ Tabbar.propTypes = {
 Tabbar.defaultProps = {
   barSize: 50,
   BarComponent: Normalbar
+};
+
+Tabbar.childContextTypes = {
+  barSize: React.PropTypes.number
 };
