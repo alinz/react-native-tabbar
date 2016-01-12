@@ -27,7 +27,10 @@ export default class Normalbar extends Component {
     const { width, height } = window;
 
     return (
-      <Dynamicbar ref="dynamic" size={size} outerBarStyle={[styles.bar, { width, backgroundColor }]}>
+      <Dynamicbar
+        ref="dynamic"
+        size={size}
+        style={[styles.bar, { width, backgroundColor }]}>
         {children}
       </Dynamicbar>
     )

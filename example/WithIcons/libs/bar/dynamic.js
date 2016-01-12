@@ -18,9 +18,9 @@ export default class Dynamicbar extends Component {
   }
 
   render() {
-    const { children, size, outerBarStyle, innerBarStyle } = this.props;
+    const { children, size, style } = this.props;
     return (
-      <Rawbar outerBarStyle={[outerBarStyle, { height: size, top: this.value }]} innerBarStyle={innerBarStyle}>
+      <Rawbar style={[style, { height: size, top: this.value }]}>
         {children}
       </Rawbar>
     );
@@ -29,6 +29,5 @@ export default class Dynamicbar extends Component {
 
 Dynamicbar.propTypes = {
   size: React.PropTypes.number.isRequired,
-  outerBarStyle: React.PropTypes.any,
-  innerBarStyle: React.PropTypes.any
+  style: React.PropTypes.any
 };

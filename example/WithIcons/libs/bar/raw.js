@@ -6,20 +6,16 @@ export default class Rawbar extends Component {
   }
 
   render() {
-    const { children, outerBarStyle, innerBarStyle } = this.props;
+    const { children, style } = this.props;
 
-    const child = innerBarStyle? ( <Animated.View style={innerBarStyle}>
-                                    {children}
-                                   </Animated.View> ) : children;
     return (
-      <Animated.View style={outerBarStyle}>
-        {child}
+      <Animated.View style={style}>
+        {children}
       </Animated.View>
     );
   }
 }
 
 Rawbar.propTypes = {
-  outerBarStyle: React.PropTypes.any.isRequired,
-  innerBarStyle: React.PropTypes.any
+  style: React.PropTypes.any.isRequired
 };
