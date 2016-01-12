@@ -1,5 +1,8 @@
 import React, { Component, View } from 'react-native';
 import { buildTabGraph } from './tab_graph';
+import Normalbar from './bar';
+
+const REF_BAR = 'REF_BAR';
 
 //Tabbar
 export default class Tabbar extends Component {
@@ -10,27 +13,39 @@ export default class Tabbar extends Component {
     };
   }
 
+  getBarRef() {
+    return this.refs[REF_BAR];
+  }
+
   renderContents() {
-    
+
   }
 
   renderIcons() {
-
+    const { tabs } = this.state;
+    return tabs.map((tab) => tab.icon);
   }
 
   render() {
+    const { BarComponent, barSize } = this.props;
     return (
       <View style={{ flex: 1 }}>
-
+        <BarComponent
+          ref={REF_BAR}
+          size={barSize}>
+            {this.renderIcons()}
+        </BarComponent>
       </View>
     );
   }
 }
 
 Tabbar.propTypes = {
-  barSize: React.PropTypes.number
+  barSize: React.PropTypes.number,
+  BarComponent: React.PropTypes.func
 };
 
 Tabbar.defaultProps = {
-  barSize: 30
+  barSize: 50,
+  BarComponent: Normalbar
 };

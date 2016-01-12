@@ -10,7 +10,7 @@ import Wrapper from './wrapper'
   render() {
     const { selected, children } = this.props;
     return (
-      <View style={{}}>
+      <View style={{ flex: 1, height: 50 }}>
         <Wrapper ref="wrap">
           {children}
         </Wrapper>
