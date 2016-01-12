@@ -9,7 +9,8 @@ export default class Tabbar extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      tabs: buildTabGraph(props.children)
+      tabs: buildTabGraph(props.children),
+      activeTab: ''
     };
   }
 
@@ -24,7 +25,8 @@ export default class Tabbar extends Component {
   }
 
   renderContents() {
-
+    const { tabs } = this.state;
+    return tabs.map((tab) => tab.content);
   }
 
   renderIcons() {
@@ -36,6 +38,7 @@ export default class Tabbar extends Component {
     const { BarComponent, barSize } = this.props;
     return (
       <View style={{ flex: 1 }}>
+        {this.renderContents()}
         <BarComponent
           ref={REF_BAR}
           size={barSize}>

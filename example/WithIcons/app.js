@@ -31,7 +31,7 @@ export default class App extends Component {
             <View style={{ flex: 1, backgroundColor: 'red' }}/>
           </RawIcon>
           <Content>
-            <View ref="ali"/>
+            <View style={{ flex: 1, backgroundColor: 'blue' }}/>
           </Content>
         </Tab>
       </Tabbar>

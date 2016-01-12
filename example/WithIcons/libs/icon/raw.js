@@ -7,6 +7,10 @@ const extendRawIcon = (ChildComponent) => {
       super(props, context);
     }
 
+    registerIcon() {
+
+    }
+
     render() {
       const component = ChildComponent? <ChildComponent {...this.props}/> : this.props.children;
       const { barSize } = this.context;
@@ -22,7 +26,8 @@ const extendRawIcon = (ChildComponent) => {
   }
 
   RawIcon.contextTypes = {
-    barSize: React.PropTypes.number
+    barSize: React.PropTypes.number,
+    tabName: React.PropTypes.string
   };
 
   return RawIcon;

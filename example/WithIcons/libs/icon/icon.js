@@ -23,4 +23,8 @@ class Icon extends Component {
   }
 }
 
+Icon.propTypes = {
+  label: React.PropTypes.string
+}
+
 export default extendRawIcon(Icon);
