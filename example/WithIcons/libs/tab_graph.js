@@ -1,5 +1,6 @@
 import React from 'react-native';
 import Tab, { Icon, Content } from './tab';
+import { RawIcon } from './icon';
 
 //this fuction tries to validated and created an array of tab graph with the
 //following formats
@@ -47,7 +48,7 @@ export const buildTabGraph = (children, tabs) => {
     tab.content = null;
 
     React.Children.forEach(tabChild.props.children, (tabItem) => {
-      if (tabItem.type === Icon) {
+      if (tabItem.type.name === 'RawIcon') {
         if (tab.icon) {
           throw new Error('one tab has too many Icon components');
         }
