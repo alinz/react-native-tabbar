@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native start",
+    "run-ios": "cd ./ios && xctool -project WithIcons.xcodeproj -scheme WithIcons test -sdk iphonesimulator -destination 'platform=iphonesimulator,name=iPhone 6'",
+    "run-android-sim": "cd ./android && emulator -wipe-data -scale 0.2 -avd awesome",
+    "launch-android": "./gradlew installRelease"
   },
   "dependencies": {
     "react-native": "^0.18.0-rc"
