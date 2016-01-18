@@ -71,6 +71,7 @@ export const buildTabGraph = (children, tabs) => {
     tab.name = tabChild.props.name;
     tab.icon = null;
     tab.content = null;
+    tab.contentRef = null;
 
     React.Children.forEach(tabChild.props.children, (tabItem) => {
       if (tabItem.type.name === 'RawIcon') {

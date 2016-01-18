@@ -31,8 +31,8 @@ export default class App extends Component {
             <View style={{ overflow:'hidden', flex: 1, backgroundColor: 'red' }}/>
           </RawIcon>
           <Content>
-            <View style={{ flex: 1 }}>
-              
+            <View ref="view2" style={{ flex: 1 }}>
+
             </View>
           </Content>
         </Tab>

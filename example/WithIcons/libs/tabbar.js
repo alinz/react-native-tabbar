@@ -16,8 +16,19 @@ export default class Tabbar extends Component {
 
   getChildContext() {
     return {
-      barSize: this.props.barSize
+      barSize: this.props.barSize,
+      //we need this to let the content register show and hide method
+      registerTabContent: this.registerTabContent.bind(this)
     };
+  }
+
+  registerTabContent(ref, tabName) {
+    this.state.tabs.some((tab) => {
+      if (tab.name === tabName) {
+        tab.contentRef = ref;
+        return true;
+      }
+    });
   }
 
   getBarRef() {
@@ -26,7 +37,7 @@ export default class Tabbar extends Component {
 
   renderContents() {
     const { tabs } = this.state;
-    return tabs.map((tab) => tab.content);
+    return tabs.map((tab, index) => tab.content);
   }
 
   renderIcons() {
@@ -60,5 +71,6 @@ Tabbar.defaultProps = {
 };
 
 Tabbar.childContextTypes = {
-  barSize: React.PropTypes.number
+  barSize: React.PropTypes.number,
+  registerTabContent: React.PropTypes.func
 };

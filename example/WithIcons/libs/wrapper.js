@@ -28,7 +28,7 @@ export default class Wrapper extends Component {
 
     this._ref_ = children.ref || DEFAULT_REF;
     return (
-      React.cloneElement(children, props)
+      React.cloneElement(children, {...props, ref: this._ref_})
     );
   }
 }
