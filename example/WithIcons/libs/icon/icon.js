@@ -17,7 +17,7 @@ class Icon extends Component {
   render() {
     return (
       <View style={styles.icon}>
-        <Text>Icon</Text>
+        <Text>{this.props.label}</Text>
       </View>
     );
   }

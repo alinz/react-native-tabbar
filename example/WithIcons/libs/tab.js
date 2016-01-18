@@ -1,8 +1,17 @@
-import React, { Component, View } from 'react-native';
+import React, { StyleSheet, Component, View } from 'react-native';
 import { window } from './util';
 import Wrapper from './wrapper'
 
- export class Icon extends Component {
+const styles = StyleSheet.create({
+  content: {
+    backgroundColor:'transparent',
+    position: 'absolute',
+    width: window.width,
+    height: window.height
+  }
+})
+
+export class Icon extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -27,7 +36,7 @@ export class Content extends Component {
   render() {
     const { selected, children } = this.props;
     return (
-      <View style={{ position: 'absolute', width: window.width, height: window.height }}>
+      <View style={styles.content}>
         <Wrapper ref="wrap">
           {children}
         </Wrapper>

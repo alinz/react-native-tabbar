@@ -1,4 +1,4 @@
-import React, { Component, View } from 'react-native';
+import React, { Component, View, Text } from 'react-native';
 import Tabbar from './libs/tabbar';
 import Tab, { Content } from './libs/tab';
 import { RawIcon, Icon } from './libs/icon';
@@ -23,15 +23,17 @@ export default class App extends Component {
         <Tab name="tab1">
           <Icon label="my label"/>
           <Content>
-            <View ref="ali"/>
+            <View style={{ flex: 1, backgroundColor: 'yellow' }}/>
           </Content>
         </Tab>
         <Tab name="tab2">
           <RawIcon>
-            <View style={{ flex: 1, backgroundColor: 'red' }}/>
+            <View style={{ overflow:'hidden', flex: 1, backgroundColor: 'red' }}/>
           </RawIcon>
           <Content>
-            <View style={{ flex: 1, backgroundColor: 'blue' }}/>
+            <View style={{ flex: 1 }}>
+              
+            </View>
           </Content>
         </Tab>
       </Tabbar>

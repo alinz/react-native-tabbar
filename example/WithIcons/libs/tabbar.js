@@ -42,7 +42,7 @@ export default class Tabbar extends Component {
         <BarComponent
           ref={REF_BAR}
           size={barSize}>
-            {this.renderIcons()}
+          {this.renderIcons()}
         </BarComponent>
       </View>
     );

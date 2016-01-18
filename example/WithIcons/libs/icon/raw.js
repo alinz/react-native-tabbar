@@ -16,7 +16,7 @@ const extendRawIcon = (ChildComponent) => {
       const { barSize } = this.context;
 
       return (
-        <View style={{ flex: 1, height: barSize }}>
+        <View style={{ overflow: 'hidden', flex: 1, height: barSize }}>
           <Wrapper ref="wrap">
             {component}
           </Wrapper>
