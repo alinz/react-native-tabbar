@@ -1,6 +1,7 @@
 import React, { Component } from 'react-native';
-import Tab, { Icon, Content } from './tab';
+import Tabbar from './tabbar';
 import { RawIcon } from './icon';
+import { RawContent } from './content';
 
 class InjectTabNameContext extends Component {
   constructor(props, context) {
@@ -34,7 +35,8 @@ InjectTabNameContext.propTypes = {
     {
       name:
       content: contentComponent,
-      icon: iconComponent
+      icon: iconComponent,
+      contentRef: {show, hide} reference to content to call lifecycle events
     },
     ...
   ]
@@ -56,7 +58,7 @@ export const buildTabGraph = (children, tabs) => {
   React.Children.forEach(children, (tabChild) => {
     let tab = {};
 
-    if (tabChild.type !== Tab) {
+    if (tabChild.type !== Tabbar.Tab) {
       throw new Error(`unknown ${tabChild.type.name} component inside Tabbar`);
     }
 
@@ -80,9 +82,9 @@ export const buildTabGraph = (children, tabs) => {
         }
         tab.icon = <InjectTabNameContext key={tab.name} name={tab.name}>{tabItem}</InjectTabNameContext>;
       }
-      else if (tabItem.type === Content){
+      else if (tabItem.type === RawContent){
         if (tab.content) {
-          throw new Error('one tab has too many Content components');
+          throw new Error('one tab has too many RawContent components');
         }
         tab.content = <InjectTabNameContext key={tab.name} name={tab.name}>{tabItem}</InjectTabNameContext>;
       } else {
@@ -95,7 +97,7 @@ export const buildTabGraph = (children, tabs) => {
     }
 
     if (tab.content == null) {
-      throw new Error(`tab ${tab.name} does not have Content component`);
+      throw new Error(`tab ${tab.name} does not have RawContent component`);
     }
 
     graphs.push(tab);

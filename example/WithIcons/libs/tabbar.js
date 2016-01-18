@@ -20,16 +20,28 @@ export default class Tabbar extends Component {
       barSize: this.props.barSize,
       //we need this to let the content register show and hide method
       registerTabContent: this.registerTabContent.bind(this),
+      registerTabIcon: this.registerTabIcon.bind(this),
       gotoTab: this.gotoTab.bind(this)
     };
   }
 
   registerTabContent(ref, tabName) {
     this.state.tabs.some((tab) => {
-      if (tab.name === tabName) {
-        tab.contentRef = ref;
-        return true;
+      if (tab.name !== tabName) {
+        return false;
       }
+      tab.contentRef = ref;
+      return true;
+    });
+  }
+
+  registerTabIcon(ref, tabName) {
+    this.state.tabs.some((tab) => {
+      if (tab.name !== tabName) {
+        return false;
+      }
+      tab.tabRef = ref;
+      return true;
     });
   }
 
@@ -104,5 +116,19 @@ Tabbar.defaultProps = {
 Tabbar.childContextTypes = {
   barSize: React.PropTypes.number,
   registerTabContent: React.PropTypes.func,
+  registerTabIcon: React.PropTypes.func,
   gotoTab: React.PropTypes.func
 };
+
+//this component is used only as ref. this component will never render.
+class Tab extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    return null;
+  }
+}
+
+Tabbar.Tab = Tab;

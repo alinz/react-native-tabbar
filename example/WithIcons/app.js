@@ -1,6 +1,6 @@
 import React, { Component, View, Text } from 'react-native';
 import Tabbar from './libs/tabbar';
-import Tab, { Content } from './libs/tab';
+import { RawContent } from './libs/content';
 import { RawIcon, Icon } from './libs/icon';
 
 
@@ -29,22 +29,22 @@ export default class App extends Component {
   render() {
     return (
       <Tabbar ref="myTabbar">
-        <Tab name="tab1">
+        <Tabbar.Tab name="tab1">
           <Icon label="my label"/>
-          <Content>
+          <RawContent>
             <View style={{ flex: 1, backgroundColor: 'yellow' }}/>
-          </Content>
-        </Tab>
-        <Tab name="tab2">
+          </RawContent>
+        </Tabbar.Tab>
+        <Tabbar.Tab name="tab2">
           <RawIcon>
             <View style={{ overflow:'hidden', flex: 1, backgroundColor: 'red' }}/>
           </RawIcon>
-          <Content>
+          <RawContent>
             <View ref="view2" style={{ flex: 1, backgroundColor: 'red' }}>
 
             </View>
-          </Content>
-        </Tab>
+          </RawContent>
+        </Tabbar.Tab>
       </Tabbar>
     );
   }
