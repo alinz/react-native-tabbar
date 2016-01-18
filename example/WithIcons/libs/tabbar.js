@@ -8,6 +8,7 @@ const REF_BAR = 'REF_BAR';
 export default class Tabbar extends Component {
   constructor(props, context) {
     super(props, context);
+    this.prevContentRef = null;
     this.state = {
       tabs: buildTabGraph(props.children),
       activeTab: ''
@@ -18,7 +19,8 @@ export default class Tabbar extends Component {
     return {
       barSize: this.props.barSize,
       //we need this to let the content register show and hide method
-      registerTabContent: this.registerTabContent.bind(this)
+      registerTabContent: this.registerTabContent.bind(this),
+      gotoTab: this.gotoTab.bind(this)
     };
   }
 
@@ -35,6 +37,24 @@ export default class Tabbar extends Component {
     return this.refs[REF_BAR];
   }
 
+  gotoTab(tabName) {
+    this.state.tabs.some((tab) => {
+      if (tab.name !== tabName) {
+        return false;
+      }
+
+      if (this.prevContentRef !== tab.contentRef) {
+        if (this.prevContentRef) {
+          this.prevContentRef.hide();
+        }
+        tab.contentRef.show();
+        this.prevContentRef = tab.contentRef;
+      }
+
+      return true
+    });
+  }
+
   renderContents() {
     const { tabs } = this.state;
     return tabs.map((tab, index) => tab.content);
@@ -43,6 +63,15 @@ export default class Tabbar extends Component {
   renderIcons() {
     const { tabs } = this.state;
     return tabs.map((tab) => tab.icon);
+  }
+
+  componentDidMount() {
+    let { initialTab } = this.props;
+    //it means that we need to get the first tab name
+    if (initialTab === "") {
+      initialTab = this.state.tabs[0].name;
+    }
+    this.gotoTab(initialTab);
   }
 
   render() {
@@ -62,15 +91,18 @@ export default class Tabbar extends Component {
 
 Tabbar.propTypes = {
   barSize: React.PropTypes.number,
-  BarComponent: React.PropTypes.func
+  BarComponent: React.PropTypes.func,
+  initialTab: React.PropTypes.string
 };
 
 Tabbar.defaultProps = {
   barSize: 50,
-  BarComponent: Normalbar
+  BarComponent: Normalbar,
+  initialTab: ""
 };
 
 Tabbar.childContextTypes = {
   barSize: React.PropTypes.number,
-  registerTabContent: React.PropTypes.func
+  registerTabContent: React.PropTypes.func,
+  gotoTab: React.PropTypes.func
 };

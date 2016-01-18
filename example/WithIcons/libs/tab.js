@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     width: window.width,
     height: window.height
   }
-})
+});
 
 export class Icon extends Component {
   constructor(props, context) {
@@ -31,7 +31,7 @@ export class Icon extends Component {
 export class Content extends Component {
   constructor(props, context) {
     super(props, context);
-    this.top = new Animated.Value(0);
+    this.top = new Animated.Value(window.height);
   }
 
   componentDidMount() {

@@ -10,11 +10,20 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    // let toggle = true;
+    // let toggle = "tab2";
     // setInterval(() => {
-    //   toggle = !toggle;
-    //   this.refs['myTabbar'].getBarRef().show(toggle);
+    //   console.log(`goto ${toggle}`);
+    //   this.refs['myTabbar'].gotoTab(toggle);
+    //   toggle = toggle == "tab2"? "tab1" : "tab2";
     // }, 1000);
+    //
+    //
+    //
+    // let toggleShow = true;
+    // setInterval(() => {
+    //   toggleShow = !toggleShow;
+    //   this.refs['myTabbar'].getBarRef().show(toggleShow);
+    // }, 200);
   }
 
   render() {
@@ -31,7 +40,7 @@ export default class App extends Component {
             <View style={{ overflow:'hidden', flex: 1, backgroundColor: 'red' }}/>
           </RawIcon>
           <Content>
-            <View ref="view2" style={{ flex: 1 }}>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'red' }}>
 
             </View>
           </Content>
