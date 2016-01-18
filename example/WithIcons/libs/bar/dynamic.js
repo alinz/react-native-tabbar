@@ -1,16 +1,16 @@
 import React, { Component, Animated } from 'react-native';
 import Rawbar from './raw';
-import { window } from './../util';
 
 export default class Dynamicbar extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.value = new Animated.Value(window.height - props.size);
+    this.value = new Animated.Value(0);
   }
 
   show(enable, duration) {
-    const toValue = !!enable? window.height - this.props.size : window.height;
+    const { size } = this.props;
+    const toValue = !!enable? 0 : -size;
     Animated.timing(this.value, {
       duration: duration,
       toValue
@@ -20,7 +20,7 @@ export default class Dynamicbar extends Component {
   render() {
     const { children, size, style } = this.props;
     return (
-      <Rawbar style={[style, { height: size, top: this.value }]}>
+      <Rawbar style={[style, { height: size, bottom: this.value }]}>
         {children}
       </Rawbar>
     );

@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     width: window.width
   }
 });
@@ -24,7 +24,7 @@ export default class Normalbar extends Component {
 
   render() {
     const { children, size, backgroundColor } = this.props;
-    const { width, height } = window;
+    const { width } = window;
 
     return (
       <Dynamicbar
