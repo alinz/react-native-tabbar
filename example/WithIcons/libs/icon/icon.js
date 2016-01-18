@@ -1,4 +1,4 @@
-import React, { StyleSheet, Component, View, Text } from 'react-native';
+import React, { StyleSheet, Component, View, Text, TouchableOpacity } from 'react-native';
 import { extendRawIcon } from './raw';
 
 const styles = StyleSheet.create({
@@ -14,17 +14,37 @@ class Icon extends Component {
     super(props, context);
   }
 
+  onPress() {
+    const { tabName, gotoTab } = this.context;
+    gotoTab(tabName);
+  }
+
+  tabDidActive() {
+    console.log(`tab ${this.context.tabName} is active`);
+  }
+
+  tabDidInactive() {
+    console.log(`tab ${this.context.tabName} is inactive`);
+  }
+
   render() {
     return (
-      <View style={styles.icon}>
-        <Text>{this.props.label}</Text>
-      </View>
+      <TouchableOpacity style={{ flex: 1 }} onPress={this.onPress.bind(this)}>
+        <View style={styles.icon}>
+          <Text>{this.props.label}</Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
 Icon.propTypes = {
   label: React.PropTypes.string
-}
+};
+
+Icon.contextTypes = {
+  tabName: React.PropTypes.string,
+  gotoTab: React.PropTypes.func
+};
 
 export default extendRawIcon(Icon);
