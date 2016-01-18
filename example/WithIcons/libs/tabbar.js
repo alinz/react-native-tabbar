@@ -9,6 +9,7 @@ export default class Tabbar extends Component {
   constructor(props, context) {
     super(props, context);
     this.prevContentRef = null;
+    this.prevtabRef = null;
     this.state = {
       tabs: buildTabGraph(props.children),
       activeTab: ''
@@ -59,8 +60,14 @@ export default class Tabbar extends Component {
         if (this.prevContentRef) {
           this.prevContentRef.hide();
         }
+        if (this.prevTabRef) {
+          this.prevTabRef.inactive();
+        }
+
         tab.contentRef.show();
+        tab.tabRef.active();
         this.prevContentRef = tab.contentRef;
+        this.prevTabRef = tab.tabRef;
       }
 
       return true

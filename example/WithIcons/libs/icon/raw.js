@@ -11,6 +11,26 @@ const extendRawIcon = (ChildComponent) => {
 
     }
 
+    componentDidMount() {
+      const { tabName, registerTabIcon } = this.context;
+      if (registerTabIcon) {
+        registerTabIcon({
+          active: () => {
+            const ref = this.refs['wrap'].getWrappedRef();
+            if (ref.tabDidActive) {
+              ref.tabDidActive();
+            }
+          },
+          inactive: () => {
+            const ref = this.refs['wrap'].getWrappedRef();
+            if (ref.tabDidInactive) {
+              ref.tabDidInactive();
+            }
+          }
+        }, tabName);
+      }
+    }
+
     render() {
       const component = ChildComponent? <ChildComponent {...this.props}/> : this.props.children;
       const { barSize } = this.context;
@@ -27,7 +47,8 @@ const extendRawIcon = (ChildComponent) => {
 
   RawIcon.contextTypes = {
     barSize: React.PropTypes.number,
-    tabName: React.PropTypes.string
+    tabName: React.PropTypes.string,
+    registerTabIcon: React.PropTypes.func
   };
 
   return RawIcon;
