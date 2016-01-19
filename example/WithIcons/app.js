@@ -1,5 +1,5 @@
 import React, { Component, View, Text } from 'react-native';
-import Tabbar, { Tab, RawContent, Icon, glypyMapMaker } from './libs';
+import Tabbar, { Tab, RawContent, IconWithBar, glypyMapMaker } from './libs';
 
 const glypy = glypyMapMaker({
   Home: 'e900',
@@ -42,9 +42,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <Tabbar ref="myTabbar" barColor={'red'}>
+      <Tabbar ref="myTabbar" barColor={'gray'}>
         <Tab name="home">
-          <Icon label="Home" type={glypy.Home} from={'icomoon'}/>
+          <IconWithBar label="Home" type={glypy.Home} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
               <Text onPress={()=>console.log('home')}>Home</Text>
@@ -52,7 +52,7 @@ export default class App extends Component {
           </RawContent>
         </Tab>
         <Tab name="camera">
-          <Icon label="Camera" type={glypy.Camera} from={'icomoon'}/>
+          <IconWithBar label="Camera" type={glypy.Camera} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
               <Text onPress={()=>console.log('camera')}>Camera</Text>
@@ -60,7 +60,7 @@ export default class App extends Component {
           </RawContent>
         </Tab>
         <Tab name="stats">
-          <Icon label="Stats" type={glypy.Stat} from={'icomoon'}/>
+          <IconWithBar label="Stats" type={glypy.Stat} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
               <Text onPress={()=>console.log('stats')}>Stats</Text>
@@ -68,7 +68,7 @@ export default class App extends Component {
           </RawContent>
         </Tab>
         <Tab name="favorite">
-          <Icon label="Fav" type={glypy.Favorite} from={'icomoon'}/>
+          <IconWithBar label="Fav" type={glypy.Favorite} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
               <Text onPress={()=>console.log('favorite')}>Favorite</Text>
@@ -76,7 +76,7 @@ export default class App extends Component {
           </RawContent>
         </Tab>
         <Tab name="settings">
-          <Icon label="Settings" type={glypy.Settings} from={'icomoon'}/>
+          <IconWithBar label="Settings" type={glypy.Settings} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
               <Text onPress={()=>console.log('settings')}>Settings</Text>
