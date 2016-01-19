@@ -9,6 +9,7 @@
     "launch-android": "./gradlew installRelease"
   },
   "dependencies": {
-    "react-native": "^0.18.0-rc"
+    "react-native": "^0.18.0-rc",
+    "react-native-tabbar": "../.."
   }
 }

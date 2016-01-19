@@ -1,5 +1,5 @@
 import React, { Component, View, Text } from 'react-native';
-import Tabbar, { Tab, RawContent, IconWithBar, glypyMapMaker } from './libs';
+import Tabbar, { Tab, RawContent, IconWithBar, glypyMapMaker } from 'react-native-tabbar';
 
 const glypy = glypyMapMaker({
   Home: 'e900',
