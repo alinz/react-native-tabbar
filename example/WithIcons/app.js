@@ -12,6 +12,7 @@ const glypy = glypyMapMaker({
 export default class App extends Component {
   constructor(props, context) {
     super(props, context);
+    this.toggle = false;
   }
 
   componentDidMount() {
@@ -40,6 +41,11 @@ export default class App extends Component {
     // }, 4000);
   }
 
+  tabbarToggle() {
+    this.refs['myTabbar'].getBarRef().show(this.toggle);
+    this.toggle = !this.toggle;
+  }
+
   render() {
     return (
       <Tabbar ref="myTabbar" barColor={'gray'}>
@@ -47,7 +53,7 @@ export default class App extends Component {
           <IconWithBar label="Home" type={glypy.Home} from={'icomoon'}/>
           <RawContent>
             <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
-              <Text onPress={()=>console.log('home')}>Home</Text>
+              <Text onPress={()=>this.tabbarToggle()}>Toggle Tabbar</Text>
             </View>
           </RawContent>
         </Tab>
