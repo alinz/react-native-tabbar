@@ -1,6 +1,6 @@
 import React, { Component, View } from 'react-native';
 import { buildTabGraph } from './tab_graph';
-import Normalbar from './bar';
+import { Normalbar } from './bar';
 
 const REF_BAR = 'REF_BAR';
 
@@ -126,16 +126,3 @@ Tabbar.childContextTypes = {
   registerTabIcon: React.PropTypes.func,
   gotoTab: React.PropTypes.func
 };
-
-//this component is used only as ref. this component will never render.
-class Tab extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  render() {
-    return null;
-  }
-}
-
-Tabbar.Tab = Tab;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react-native';
 import Tabbar from './tabbar';
+import Tab from './tab';
 import { RawIcon } from './icon';
 import { RawContent } from './content';
 
@@ -58,7 +59,7 @@ export const buildTabGraph = (children, tabs) => {
   React.Children.forEach(children, (tabChild) => {
     let tab = {};
 
-    if (tabChild.type !== Tabbar.Tab) {
+    if (tabChild.type !== Tab) {
       throw new Error(`unknown ${tabChild.type.name} component inside Tabbar`);
     }
 
