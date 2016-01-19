@@ -3,6 +3,7 @@ import Tab from './tab';
 import { Normalbar, Rawbar, Dynamicbar } from './bar';
 import { RawContent, extendRawContent } from './content';
 import { Icon, RawIcon, extendRawIcon } from './icon';
+import { glypyMapMaker } from './util';
 
 export default Tabbar
 export {
@@ -14,5 +15,6 @@ export {
   extendRawContent,
   Icon,
   RawIcon,
-  extendRawIcon
+  extendRawIcon,
+  glypyMapMaker
 }

@@ -1,15 +1,5 @@
 import React, { Component, View, Text } from 'react-native';
-import Tabbar, { Tab, RawContent, Icon } from './libs';
-
-const glypyMapMaker = (glypy) => Object.keys(glypy).map((key) => {
-  return {
-    key,
-    value: String.fromCharCode(parseInt(glypy[key], 16))
-  };
-}).reduce((map, glypy) => {
-  map[glypy.key] = glypy.value
-  return map;
-}, {});
+import Tabbar, { Tab, RawContent, Icon, glypyMapMaker } from './libs';
 
 const glypy = glypyMapMaker({
   Home: 'e900',
@@ -52,7 +42,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Tabbar ref="myTabbar">
+      <Tabbar ref="myTabbar" barColor={'red'}>
         <Tab name="home">
           <Icon label="Home" type={glypy.Home} from={'icomoon'}/>
           <RawContent>

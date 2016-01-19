@@ -94,11 +94,12 @@ export default class Tabbar extends Component {
   }
 
   render() {
-    const { BarComponent, barSize } = this.props;
+    const { BarComponent, barSize, barColor } = this.props;
     return (
       <View style={{ flex: 1 }}>
         {this.renderContents()}
         <BarComponent
+          barColor={barColor}
           ref={REF_BAR}
           size={barSize}>
           {this.renderIcons()}
@@ -111,12 +112,14 @@ export default class Tabbar extends Component {
 Tabbar.propTypes = {
   barSize: React.PropTypes.number,
   BarComponent: React.PropTypes.func,
+  barColor: React.PropTypes.string,
   initialTab: React.PropTypes.string
 };
 
 Tabbar.defaultProps = {
   barSize: 50,
   BarComponent: Normalbar,
+  barColor: 'gray',
   initialTab: ""
 };
 
