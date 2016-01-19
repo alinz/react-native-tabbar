@@ -2,7 +2,7 @@
   "name": "react-native-tabbar",
   "version": "0.2.1",
   "description": "Tab bar with more freedom",
-  "main": "jsx/index.js",
+  "main": "libs/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
