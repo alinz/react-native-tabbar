@@ -3,6 +3,23 @@ import Tabbar from './libs/tabbar';
 import { RawContent } from './libs/content';
 import { RawIcon, Icon } from './libs/icon';
 
+const glypyMapMaker = (glypy) => Object.keys(glypy).map((key) => {
+  return {
+    key,
+    value: String.fromCharCode(parseInt(glypy[key], 16))
+  };
+}).reduce((map, glypy) => {
+  map[glypy.key] = glypy.value
+  return map;
+}, {});
+
+const glypy = glypyMapMaker({
+  Home: 'e900',
+  Camera: 'e901',
+  Stat: 'e902',
+  Settings: 'e903',
+  Favorite: 'e904'
+});
 
 export default class App extends Component {
   constructor(props, context) {
@@ -38,29 +55,43 @@ export default class App extends Component {
   render() {
     return (
       <Tabbar ref="myTabbar">
-        <Tabbar.Tab name="tab1">
-          <Icon label="Tab 1" icon/>
+        <Tabbar.Tab name="home">
+          <Icon label="Home" type={glypy.Home} from={'icomoon'}/>
           <RawContent>
-            <View ref="view2" style={{ flex: 1, backgroundColor: 'yellow', alignItems: 'center', justifyContent:'center' }}>
-              <Text onPress={()=>console.log('clicked me')}>Click Me</Text>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
+              <Text onPress={()=>console.log('home')}>Home</Text>
             </View>
           </RawContent>
         </Tabbar.Tab>
-        <Tabbar.Tab name="tab2">
-          <Icon label="Tab 2"/>
+        <Tabbar.Tab name="camera">
+          <Icon label="Camera" type={glypy.Camera} from={'icomoon'}/>
           <RawContent>
-            <View ref="view2" style={{ flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent:'center' }}>
-              <Text onPress={()=>console.log('clicked me')}>Click Me</Text>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
+              <Text onPress={()=>console.log('camera')}>Camera</Text>
             </View>
           </RawContent>
         </Tabbar.Tab>
-        <Tabbar.Tab name="tab3">
-          <RawIcon>
-            <View style={{ flex: 1, backgroundColor: 'blue' }}/>
-          </RawIcon>
+        <Tabbar.Tab name="stats">
+          <Icon label="Stats" type={glypy.Stat} from={'icomoon'}/>
           <RawContent>
-            <View ref="view2" style={{ flex: 1, backgroundColor: 'blue', alignItems: 'center', justifyContent:'center' }}>
-              <Text onPress={()=>console.log('clicked me')}>Click Me</Text>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
+              <Text onPress={()=>console.log('stats')}>Stats</Text>
+            </View>
+          </RawContent>
+        </Tabbar.Tab>
+        <Tabbar.Tab name="favorite">
+          <Icon label="Fav" type={glypy.Favorite} from={'icomoon'}/>
+          <RawContent>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
+              <Text onPress={()=>console.log('favorite')}>Favorite</Text>
+            </View>
+          </RawContent>
+        </Tabbar.Tab>
+        <Tabbar.Tab name="settings">
+          <Icon label="Settings" type={glypy.Settings} from={'icomoon'}/>
+          <RawContent>
+            <View ref="view2" style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
+              <Text onPress={()=>console.log('settings')}>Settings</Text>
             </View>
           </RawContent>
         </Tabbar.Tab>
