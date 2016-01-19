@@ -1,5 +1,8 @@
 import Tabbar from './tabbar';
+import { RawContent, extendRawContent } from './content/raw';
 
-export {
+export default {
   Tabbar
+  RawContent,
+  extendRawContent
 }

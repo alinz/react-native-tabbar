@@ -11,6 +11,17 @@ const correctWindowHeight = () => ({
   height: Platform.OS === 'ios'? window.height : window.height - androidMagicNumber
 });
 
+const glypyMapMaker = (glypy) => Object.keys(glypy).map((key) => {
+  return {
+    key,
+    value: String.fromCharCode(parseInt(glypy[key], 16))
+  };
+}).reduce((map, glypy) => {
+  map[glypy.key] = glypy.value
+  return map;
+}, {});
+
 module.exports = {
-  window: correctWindowHeight()
+  window: correctWindowHeight(),
+  glypyMapMaker
 };

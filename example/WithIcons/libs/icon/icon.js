@@ -1,4 +1,4 @@
-import React, { StyleSheet, Component, View, Text, TouchableOpacity } from 'react-native';
+import React, { StyleSheet, Component, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { extendRawIcon } from './raw';
 
 const styles = StyleSheet.create({
@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
 class Icon extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      selected: false
+    };
   }
 
   onPress() {
@@ -20,26 +23,61 @@ class Icon extends Component {
   }
 
   tabDidActive() {
-    console.log(`tab ${this.context.tabName} is active`);
+    this.setState({ selected: true });
+    //console.log(`tab ${this.context.tabName} is active`);
   }
 
   tabDidInactive() {
-    console.log(`tab ${this.context.tabName} is inactive`);
+    this.setState({ selected: false });
+    //console.log(`tab ${this.context.tabName} is inactive`);
   }
 
   render() {
+    const { label, type, from, size, iconStyle, onActiveColor, onInactiveColor } = this.props;
+    const { selected } = this.state;
+
+    const color = selected? onActiveColor : onInactiveColor
+
+    let icon = null;
+    if (!!type && !from) {
+      throw new Error("icon must contains 'type' and 'from' values");
+    } else if (!type && !!from) {
+      throw new Error("icon must contains 'type' and 'from' values");
+    } else if (!!type && !!from) {
+      icon = (
+        <Text style={[iconStyle, { fontSize: size, fontFamily: from, color: color }]}>
+          {type}
+        </Text>
+      );
+    }
+
     return (
-      <TouchableOpacity style={{ flex: 1 }} onPress={this.onPress.bind(this)}>
+      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={this.onPress.bind(this)}>
         <View style={styles.icon}>
-          <Text>{this.props.label}</Text>
+          {icon}
+          <View style={{ paddingTop: 5 }}>
+            <Text style={{ fontSize: 12, color: color }}>{label}</Text>
+          </View>
         </View>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   }
 }
 
 Icon.propTypes = {
-  label: React.PropTypes.string
+  label: React.PropTypes.string,
+  type: React.PropTypes.string,
+  from: React.PropTypes.string,
+  size: React.PropTypes.number,
+  iconStyle: React.PropTypes.any,
+  onActiveColor: React.PropTypes.string,
+  onInactiveColor: React.PropTypes.string
+};
+
+Icon.defaultProps = {
+  size: 20,
+  onActiveColor: 'white',
+  onInactiveColor: 'black'
 };
 
 Icon.contextTypes = {
