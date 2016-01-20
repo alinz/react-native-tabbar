@@ -22,7 +22,8 @@ export default class Tabbar extends Component {
       //we need this to let the content register show and hide method
       registerTabContent: this.registerTabContent.bind(this),
       registerTabIcon: this.registerTabIcon.bind(this),
-      gotoTab: this.gotoTab.bind(this)
+      gotoTab: this.gotoTab.bind(this),
+      getBarRef: this.getBarRef.bind(this)
     };
   }
 
@@ -127,5 +128,6 @@ Tabbar.childContextTypes = {
   barSize: React.PropTypes.number,
   registerTabContent: React.PropTypes.func,
   registerTabIcon: React.PropTypes.func,
-  gotoTab: React.PropTypes.func
+  gotoTab: React.PropTypes.func,
+  getBarRef: React.PropTypes.func
 };

@@ -33,6 +33,12 @@ export default class Wrapper extends Component {
     this._refFn_(ref);
   }
 
+  //For some reasons we need this as false or the first tabs ref will
+  //be null :( ahhhhhhhh
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const { children } = this.props;
     const props = children.props;
