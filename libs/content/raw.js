@@ -1,13 +1,15 @@
 import React, { StyleSheet, Component, View, Animated } from 'react-native';
-import { window } from './../util';
 import Wrapper from './../wrapper'
 
 const styles = StyleSheet.create({
-  content: {
-    backgroundColor:'transparent',
+  show: {
+    flex: 1,
+    position: 'relative',
+    backgroundColor:'transparent'
+  },
+  hide: {
     position: 'absolute',
-    width: window.width,
-    height: window.height
+    top: 10000
   }
 });
 
@@ -15,7 +17,9 @@ const extendRawContent = (ChildComponent) => {
   class RawContent extends Component {
     constructor(props, context) {
       super(props, context);
-      this.top = new Animated.Value(window.height);
+      this.state = {
+        display: styles.hide
+      };
     }
 
     componentDidMount() {
@@ -32,7 +36,7 @@ const extendRawContent = (ChildComponent) => {
       if (ref.tabWillFocus) {
         ref.tabWillFocus();
       }
-      this.top.setValue(0);
+      this.setNewStyle(styles.show);
       if (ref.tabDidFocus) {
         ref.tabDidFocus()
       }
@@ -43,20 +47,25 @@ const extendRawContent = (ChildComponent) => {
       if (ref.tabWillBlur) {
         ref.tabWillBlur();
       }
-      this.top.setValue(window.height);
+      this.setNewStyle(styles.hide);
       if (ref.tabDidBlur) {
         ref.tabDidBlur()
       }
     }
 
+    setNewStyle(style) {
+      this.setState({ display: style });
+    }
+
     render() {
       const component = ChildComponent? <ChildComponent {...this.props}/> : this.props.children;
+      const { display } = this.state;
       return (
-        <Animated.View style={[styles.content, { top: this.top }]}>
+        <View ref="tabContent" style={display}>
           <Wrapper ref="wrap">
             {component}
           </Wrapper>
-        </Animated.View>
+        </View>
       );
     }
   }
