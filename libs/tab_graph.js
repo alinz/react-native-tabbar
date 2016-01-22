@@ -59,15 +59,15 @@ export const buildTabGraph = (children, tabs) => {
   React.Children.forEach(children, (tabChild) => {
     let tab = {};
 
-    if (tabChild.type !== Tab) {
+    if (__DEV__ && tabChild.type !== Tab) {
       throw new Error(`unknown ${tabChild.type.name} component inside Tabbar`);
     }
 
-    if (!tabChild.props.name) {
+    if (__DEV__ && !tabChild.props.name) {
       throw new Error('all tabs must contains a name');
     }
 
-    if (isNameDuplicated(tabChild.props.name)) {
+    if (__DEV__ && isNameDuplicated(tabChild.props.name)) {
       throw new Error(`tab name '${tabChild.props.name}' is not unique.`);
     }
 
@@ -77,27 +77,29 @@ export const buildTabGraph = (children, tabs) => {
     tab.contentRef = null;
 
     React.Children.forEach(tabChild.props.children, (tabItem) => {
-      if (tabItem.type.name === 'RawIcon') {
-        if (tab.icon) {
+      if (tabItem.type.displayName === 'RawIcon') {
+        if (__DEV__ && tab.icon) {
           throw new Error('one tab has too many Icon components');
         }
         tab.icon = <InjectTabNameContext key={tab.name} name={tab.name}>{tabItem}</InjectTabNameContext>;
       }
-      else if (tabItem.type === RawContent){
-        if (tab.content) {
+      else if (tabItem.type.displayName === 'RawContent'){
+        if (__DEV__ && tab.content) {
           throw new Error('one tab has too many RawContent components');
         }
         tab.content = <InjectTabNameContext key={tab.name} name={tab.name}>{tabItem}</InjectTabNameContext>;
       } else {
-        throw new Error(`unknown ${tabItem.type} inside Tab component. It should be either 'Icon' or 'Content'`)
+        if (__DEV__) {
+          throw new Error(`unknown ${tabItem.type} inside Tab component. It should be either 'Icon' or 'Content'`);
+        }
       }
     });
 
-    if (tab.icon == null) {
+    if (__DEV__ && tab.icon == null) {
       throw new Error(`tab ${tab.name} does not have Icon component`);
     }
 
-    if (tab.content == null) {
+    if (__DEV__ && tab.content == null) {
       throw new Error(`tab ${tab.name} does not have RawContent component`);
     }
 

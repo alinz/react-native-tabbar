@@ -51,6 +51,8 @@ const extendRawIcon = (ChildComponent) => {
     registerTabIcon: React.PropTypes.func
   };
 
+  RawIcon.displayName = "RawIcon";
+
   return RawIcon;
 }
 

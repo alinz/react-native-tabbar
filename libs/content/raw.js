@@ -75,6 +75,8 @@ const extendRawContent = (ChildComponent) => {
     tabName: React.PropTypes.string
   };
 
+  RawContent.displayName = 'RawContent';
+
   return RawContent;
 }
 
