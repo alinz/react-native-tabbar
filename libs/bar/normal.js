@@ -22,6 +22,10 @@ export default class Normalbar extends Component {
     this.refs['dynamic'].show(enable, this.props.duration);
   }
 
+  setBarHeight(value) {
+    this.refs['dynamic'].setBarHeight(value);
+  }
+
   render() {
     const { children, size, barColor } = this.props;
     const { width } = window;
