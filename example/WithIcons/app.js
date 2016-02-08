@@ -1,4 +1,4 @@
-import React, { Component, View, Text } from 'react-native';
+import React, { Component, View, Text, ScrollView } from 'react-native';
 import Tabbar, { Tab, RawContent, IconWithBar, glypyMapMaker } from 'react-native-tabbar';
 
 const glypy = glypyMapMaker({
@@ -76,9 +76,7 @@ export default class App extends Component {
         <Tab name="favorite">
           <IconWithBar label="Fav" type={glypy.Favorite} from={'icomoon'}/>
           <RawContent>
-            <View style={{ flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent:'center' }}>
-              <Text onPress={()=>console.log('favorite')}>Favorite</Text>
-            </View>
+            <MyLongScrollView/>
           </RawContent>
         </Tab>
         <Tab name="settings">
@@ -93,3 +91,48 @@ export default class App extends Component {
     );
   }
 }
+
+
+class MyLongScrollView extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  generateContents() {
+    let contents = [];
+    for (let i = 0; i < 200; i++) {
+      contents.push(
+        <Text key={i}>My Awesome Content {i}</Text>
+      );
+    }
+
+    return contents;
+  }
+
+  onScroll(e) {
+    const {
+      nativeEvent: {
+        contentOffset: { y }
+      }
+    } = e;
+
+    const { getBarRef } = this.context;
+    getBarRef().setBarHeight(y);
+  }
+
+  render() {
+    return (
+      <ScrollView
+        onScroll={this.onScroll.bind(this)}
+        scrollEventThrottle={16}
+        style={{ flex: 1}}
+        contentContainerStyle={{ alignItems: 'center' }}>
+        {this.generateContents()}
+      </ScrollView>
+    );
+  }
+}
+
+MyLongScrollView.contextTypes = {
+  getBarRef: React.PropTypes.func
+};
