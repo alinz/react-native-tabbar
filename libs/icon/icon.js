@@ -33,7 +33,7 @@ class Icon extends Component {
   }
 
   render() {
-    const { label, type, from, size, iconStyle, onActiveColor, onInactiveColor } = this.props;
+    const { label, type, from, size, iconStyle, onActiveColor, onInactiveColor, ...rest } = this.props;
     const { selected } = this.state;
 
     const color = selected? onActiveColor : onInactiveColor
@@ -52,7 +52,7 @@ class Icon extends Component {
     }
 
     return (
-      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={this.onPress.bind(this)}>
+      <TouchableWithoutFeedback {...rest} style={{ flex: 1 }} onPress={this.onPress.bind(this)}>
         <View style={styles.icon}>
           {icon}
           <View style={{ paddingTop: 5 }}>
