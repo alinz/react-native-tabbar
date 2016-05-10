@@ -1,4 +1,5 @@
-import React, { Component, View } from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import { buildTabGraph } from './tab_graph';
 import { Normalbar } from './bar';
 

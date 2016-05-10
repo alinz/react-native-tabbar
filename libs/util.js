@@ -1,4 +1,5 @@
-import React, { Dimensions, Platform } from 'react-native';
+import React from 'react';
+import { Dimensions, Platform } from 'react-native';
 
 const windowInfo = Dimensions.get('window');
 
