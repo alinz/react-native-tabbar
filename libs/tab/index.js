@@ -1,4 +1,4 @@
-import React, { Component } from 'react-native';
+import React, { Component } from 'react';
 
 //this component is used only as ref. this component will never render.
 export default class Tab extends Component {

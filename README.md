@@ -1,5 +1,7 @@
 ## react-native-tabbar
 
+> RN 0.25 is now supported from 0.3.6 above
+
 React-Native Tab bar with more freedom
 
 ### Introduction

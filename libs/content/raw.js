@@ -1,4 +1,5 @@
-import React, { StyleSheet, Component, View, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Animated } from 'react-native';
 import Wrapper from './../wrapper'
 
 const styles = StyleSheet.create({
