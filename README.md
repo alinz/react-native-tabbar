@@ -6,8 +6,8 @@ React-Native Tab bar with more freedom
 
 I have decided to remove all the abstraction from this module. Now there is only
 one component, and that is `Tabbar`. All the children inside `Tabbar` component will
-be rendered inside of it. There is not `TabItem`, `WithIcon` or anything else. what you put into `Tabbar` will be displayed. By doing that, you can attach it to your
-favourite state managements such as `Redux`, or `Mobx`.
+be rendered inside of it. There are no `TabItem`, `WithIcon` or anything else. what you put into `Tabbar` will be displayed as tabs. By doing that, you can attach it to your
+favourite state managements such as `Redux`, or `Mobx`. This module should be use as a first base block for more sophisticated tabbar. Please take a look at examples folder as I added couple of common usage.
 
 ### Installation
 
@@ -36,4 +36,5 @@ npm install react-native-tabbar
 
 ### examples
 
-![](./tab-demo.gif)
+- Tabbar changes based on Orientation
+![](./tabbar-orientation.gif)
