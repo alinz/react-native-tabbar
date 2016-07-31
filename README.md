@@ -21,6 +21,7 @@ npm install react-native-tabbar
 |----|----|
 | hide | duration | shows the tabbar with animations, default duration is 200 ms |
 | show | duration | shows the tabbar with animations, default duration is 200 ms |
+| updateHeight | scrollY position | pass the value of onScroll y position to show or hide tabbar |
 | recalculate | none | once your orientation changes, call this method to re calculate the correct position of tabbar |
 
 ### Props
