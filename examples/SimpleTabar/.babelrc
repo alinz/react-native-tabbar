@@ -1,0 +1,4 @@
+{
+  "extends": "react-native/packager/react-packager/rn-babelrc.json",
+  "plugins": ["babel-plugin-transform-decorators-legacy"]
+}
