@@ -1,12 +1,13 @@
 ## react-native-tabbar
 
-> RN 0.25 is now supported from 0.3.6 above
-
 React-Native Tab bar with more freedom
 
 ### Introduction
 
-`react-native-tabbar` breaks the limitation of regular tabbar component offers by react-native. The design is highly composable and customizable. So basically **The sky's the limit**
+I have decided to remove all the abstraction from this module. Now there is only
+one component, and that is `Tabbar`. All the children inside `Tabbar` component will
+be rendered inside of it. There is not `TabItem`, `WithIcon` or anything else. what you put into `Tabbar` will be displayed. By doing that, you can attach it to your
+favourite state managements such as `Redux`, or `Mobx`.
 
 ### Installation
 
@@ -14,8 +15,24 @@ React-Native Tab bar with more freedom
 npm install react-native-tabbar
 ```
 
-> please look at the example. More documents are coming!
+### Methods
 
-### Demo
+| name | arguments | description |
+|----|----|
+| hide | duration | shows the tabbar with animations, default duration is 200 ms |
+| show | duration | shows the tabbar with animations, default duration is 200 ms |
+| recalculate | none | once your orientation changes, call this method to re calculate the correct position of tabbar |
+
+### Props
+
+| name | type | default value | description |
+|----|----|----|----|
+| height | number | 50 | the height of tabbar |
+| offset | number | 150 | how far you have to scroll before tabbar starts to disappear |
+| step | number | 0.25 | the lower the number the slower the tabbar disappear |
+| show | boolean | true | if you want to not show the tabbar at the start, pass false to this prop |
+| disable | boolean | false | disables the progress show/hide tabbar |
+
+### examples
 
 ![](./tab-demo.gif)
